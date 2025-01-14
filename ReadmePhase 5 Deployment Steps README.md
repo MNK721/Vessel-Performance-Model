@@ -56,6 +56,16 @@ python app.py
 The API will be accessible at http://127.0.0.1:5000/predict.
 
 
+Git commands::
+
+
+git pull origin master 
+git add .
+git push origin master 
+git commit -m "Modified flask API to predict total consumption and fuel per nautical mile"
+git push origin master 
+
+
 Calling the Endpoint or Script for Predictions
 Using API
 Send a POST request with input data in JSON format:
