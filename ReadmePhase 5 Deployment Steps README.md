@@ -53,7 +53,7 @@ Output: Predictions saved as predictions/prediction_results.json.
 
 
 python app.py
-The API will be accessible at http://127.0.0.1:5000/predict.
+The API will be accessible at http://127.0.0.1:5000
 
 
 Git commands::
