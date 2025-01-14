@@ -14,50 +14,22 @@ cd <repository_folder>
 
 pip install -r requirements.txt
 
-Example requirements.txt:
-pandas
-numpy
-scikit-learn
-xgboost
-flask
-gunicorn
-matplotlib
-shap
 3. Execute Model Training
 
 python train_model.py
-Input: Historical data /cleaned data(CSV Format)
-Output: A trained model saved as .pkl files (eg:Decision Tree_best_model.pkl) and visualizations saved in the outputs folders.
+Input: "Updated dataset used for Model Building"(CSV Format)
+Output: A trained model saved as .pkl files and visualizations saved in the outputs folders.
 
 4. Run the Prediction Script
-Use the provided script to make predictions on new data:
 
-python predict.py --cleaned data final.json
-Input: A JSON file with new data for predictions (example format below).
-Output: Predictions saved as predictions/prediction_results.json.
-
-
-[
-  {
-    "speed": 13.5,
-    "distance_traveled": 250,
-    "cargo_weight": 1200,
-    "sea_state": 4,
-    "fuel_type": "MGO"
-  }
-]
-
+python predict.py --Updated dataset used for Model Building.json
 
 5. Run the API Locally
-
-
 
 python app.py
 The API will be accessible at http://127.0.0.1:5000/
 
-
-Git commands::
-
+Steps to Commit and Push Changes to GitHub:
 
 git pull origin master 
 git add .
@@ -66,64 +38,7 @@ git commit -m "Modified flask API to predict total consumption and fuel per naut
 git push origin master 
 
 
-Calling the Endpoint or Script for Predictions
-Using API
-Send a POST request with input data in JSON format:
-
-
-curl -X POST http://127.0.0.1:5000/predict \
-     -H "Content-Type: application/json" \
-     -d '[
-           {
-             "speed": 12.5,
-             "distance_traveled": 200,
-             "cargo_weight": 1000,
-             "sea_state": 3,
-             "fuel_type": "MGO"
-           }
-         ]'
-         
-Response: Predicted fuel consumption.
-Using Prediction Script
-Run predict.py directly for local predictions:
-
-
-python predict.py cleaned data final.json
-
-
-from predict import predict_fuel
-
-# Input Data
-input_data = [
-    {"speed": 12.5, "distance_traveled": 200, "cargo_weight": 1000, "sea_state": 3, "fuel_type": "MGO"}
-]
-
-# Generate Predictions
-prediction = predict_fuel(input_data)
-
-# Display Results
-print(f"Predicted Fuel Consumption: {prediction[0]} liters/day")
-
-project/
-├── data/
-│   ├── historical_data.json
-│   ├── new_data.json
-├── models/
-│   └── fuel_model.pkl
-├── outputs/
-│   └── feature_importance.png
-├── predictions/
-│   └── prediction_results.json
-├── app.py
-├── train_model.py
-├── predict.py
-├── demonstration.ipynb
-├── requirements.txt
-├── Dockerfile
-└── README.md
-
-
-                                                                 Flask Server App Code
+                                                                Pycharm Flask Server App Code
 
 
 
@@ -240,6 +155,38 @@ if __name__ == "__main__":
         print(f"Error loading artifacts: {e}")
         exit(1)
     app.run(debug=True)
+
+
+
+Now,
+
+1.Execute the above code in your local environment, such as PyCharm or any Python IDE.
+
+2.In the output/logs window, you will see a URL similar to:
+
+Running on http://127.0.0.1:5000/
+
+3.Click on the URL obtained or copy-paste it into your browser.
+
+
+4.The browser will open the Fuel Consumption Prediction API home page.
+
+Input the Features:
+
+On the webpage, fill in the required feature values in the respective input boxes:
+Air Pressure
+Consumption
+Total Cylinder Oil Consumption
+Total Cylinder Oil Specific Consumption
+Sailed Distance
+
+5.Click on the Predict button.
+
+The results will display:
+Total Daily Fuel Consumption
+Fuel Consumption Per Nautical Mile
+
+To make another prediction, click the "Back to Home" link and provide new inputs.
 
 
 
