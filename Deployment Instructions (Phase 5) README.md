@@ -29,7 +29,7 @@ python predict.py --Updated dataset used for Model Building.json
 5. Run the API Locally
 
 python app.py
-The API will be accessible at http://127.0.0.1:5000/
+The API will be accessible at http://127.0.0.1:5000
 
 Steps to Commit and Push Changes to GitHub:
 
@@ -81,16 +81,16 @@ def load_saved_artifacts():
     global __data_columns
     global __model
 
-    # Load feature columns
+    
     with open("C:\\Users\\mnkmr\\Downloads\\Final Vessel Project\\Server\\artifacts\\columns.json", 'r') as f:
         __data_columns = json.load(f)['data_columns']
     __data_columns = [col for col in __data_columns if col in EXPECTED_FEATURES][:65]
 
-    # Load the trained model
+    
     with open("C:\\Users\\mnkmr\\Downloads\\Final Vessel Project\\Server\\artifacts\\Decision Tree_best_model.pkl", 'rb') as model_file:
         __model = pickle.load(model_file)
 
-    # Verify the model and features match
+    
     if len(_data_columns) != __model.n_features_in:
         raise ValueError(f"Model expects {_model.n_features_in} features, but received {len(__data_columns)} features.")
     print("Artifacts loaded successfully")
